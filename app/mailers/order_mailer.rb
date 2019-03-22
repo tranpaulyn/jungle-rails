@@ -1,10 +1,11 @@
 class OrderMailer < ApplicationMailer
 
-    def order_notification(order)
+    def order_notification(user, order)
         @order = order
+        @user = user
         mail(
-            to: @order.email,
-            subject: "Thank you for your order"
+            to: @user.email,
+            subject: "Thank you for your order ID##{@order.id}" 
         )
     end
 end

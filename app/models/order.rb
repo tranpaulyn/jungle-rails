@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
   validates :stripe_charge_id, presence: true
 
   def send_emails!
-      OrderMailer.order_notification(self).deliver_later
+      OrderMailer.order_notification(user, self).deliver_later
   end
 
 end

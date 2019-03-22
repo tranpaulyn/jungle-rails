@@ -1,5 +1,61 @@
 <html>
   <body>
-  <h1> Thanks for your order </h1>
+  <h1> Thanks for your order <%= @order.id %> </h1>
+
+  <section class="orders-show">
+
+  <header class="page-header">
+    <h1>Order <%= @order.id %></h1>
+  </header>
+
+  <div class="order-summary jumbotron">
+    <h4>Thank you for your order!</h4>
+    <div class="panel panel-default products">
+
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th colspan="2">Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.line_items.each do |item| %>
+        <tr>
+        <td></td>
+  <td>
+    <h4><%= item.product.name %></h4>
+  </td>
+  <td>
+    <%= item.item_price %>
+  </td>
+  <td>
+    <%= item.quantity %>
+  </td>
+  <td>
+  <%= item.quantity * item.item_price %>
+  </td>
+
+</tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="4">
+          TOTAL:
+        </th>
+        <th>
+          <%= @order.total %>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+
+  </div>
+  </div>
+
+</section>
   </body>
 </html>
