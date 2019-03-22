@@ -14,7 +14,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -40,4 +40,20 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.web_console.whitelisted_ips = ['10.0.2.0/24']
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+      :address              => 'smtp.ethereal.email',
+      :port                 => 587,
+      :domain               => 'ethereal.email',
+      :user_name            => 'marilou.padberg@ethereal.email',
+      :password             => 'wH4g6gUYNEth1N5GNK',
+      :authentication => 'plain',
+      :enable_starttls_auto => true
+}
+
+  config.action_mailer.default_url_options = { host: "0.0.0.0:3000" }
+
+  # config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
 end
