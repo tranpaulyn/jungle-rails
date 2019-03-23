@@ -26,6 +26,40 @@
       </div>
     </div>
 
+    <div class="row" style="margin: auto; width: 60%">
+    <h3><center>Rating<center></h3>
+    <% if @reviews.blank? %>
+    <h6><center>No reviews yet</center></h6>
+    <% else %>
+    <% @reviews.each do |review| %>
+      <h4> <center>
+      <%= review.user.email %> rated this product <%= review.rating %>/5 &nbsp; &nbsp; <%= review.comment %>  &nbsp; &nbsp; 
+      <% if current_user %>
+        <% if current_user.email === review.user.email %>
+          <%= link_to "Delete Your Review", product_review_path(@product, review), method: :delete, class:"btn btn-danger" %>
+        <% end %>
+      <% end %>
+      </center>
+      </h4>
+      <% end %>
+    <% end %> 
+    <br>
+
+    <%= form_for([@product, Review.new]) do |f| %>
+  
+    <div class="field" style="margin: auto; width: 60%">
+
+      <p><%= f.label :rating %> <%= f.select :rating, ['5', '4', '3', '2', '1'] %> out of 5
+      <br><%= f.label :comment %>
+      <br><%= f.text_area :comment %></p>
+      <div class="actions">
+      <%= f.submit "Post Review", :class =>'btn btn-info'%>
+    </div>
+    </div>
+
+    <% end %>
+    </div>
+
   </article>
 
 </section>
