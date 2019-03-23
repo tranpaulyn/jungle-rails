@@ -3,7 +3,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all.order(created_at: :desc)
-    @reviews = Review.where(product_id: @product.id)
   end
 
   def show

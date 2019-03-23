@@ -38,6 +38,7 @@
   <div class="row">
     <div class="col-xs-12">
       <%= form_tag orders_path do %>
+        <% if current_user %>
         <script
           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
@@ -48,15 +49,19 @@
           data-email="<%= current_user.email %>"
           data-currency="cad">
         </script>
+        <% else %>
+        <h4> Please <%= link_to 'Login', '/login' %> or <%= link_to 'Signup', '/signup' %> to Pay</h4>
+        <% end %>
       <% end %>
     </div>
-
-    <% else %>
-
-    <p> Hey, your cart is empty.  </p>
-    <%= link_to 'Start Shopping', [:products], class: 'btn btn-info' %>
-  
-    <% end %>
   </div>
+
+  <% else %>
+  <center>
+  <h3 style="padding-top: 20px;"> Hey, your cart is empty.  </h3>
+  <%= link_to 'Start Shopping', [:products], class: 'btn btn-info' %>
+  <p style="padding-bottom: 20px;">
+  </center>
+  <% end %>
 
 </section>
