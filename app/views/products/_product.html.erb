@@ -3,6 +3,11 @@
     <%= link_to product do %>
       <%= image_tag product.image.thumb, alt: product.name %>
       <h4><%= product.name %></h4>
+      <% if @reviews.blank? %>
+      <h6><center>No reviews yet</center></h6>
+      <% else %>
+      <p> Horchatta </p>
+      <% end %>
     <% end %>
   </header>
   <p class="description">
